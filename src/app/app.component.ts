@@ -32,7 +32,6 @@ export class AppComponent {
     }
   }
   cal() {
-    debugger;
     if (!this.resultado) {
       this.resultado = '';
     } else {
