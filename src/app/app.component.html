@@ -1,0 +1,17 @@
+<div class="body-cal">
+  <div>
+    <input type="text" id="result" [value]="resultado" placeholder="0" />
+  </div>
+  <div
+    *ngFor="let e of arrCal"
+    class="{{ e[0] === '<' ? 'num-container-2' : 'num-container' }}"
+  >
+    <button
+      class="{{ b === '=' ? 's-btn-2' : 's-btn' }}"
+      (click)="add(b)"
+      *ngFor="let b of e"
+    >
+      {{ b }}
+    </button>
+  </div>
+</div>
