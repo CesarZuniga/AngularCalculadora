@@ -14,6 +14,7 @@ export class AppComponent {
     ['<', '>', '='],
   ];
   resultado = '';
+  simbolos = ['<', '>', '=', '+', '-', '/', '*', '.'];
 
   reset() {
     this.resultado = '';
@@ -27,7 +28,25 @@ export class AppComponent {
         this.cal();
         break;
       default:
-        this.resultado += op;
+        debugger;
+        if (
+          this.resultado.length > 1 &&
+          this.simbolos.find(
+            (s) => s === this.resultado.charAt(this.resultado.length - 2)
+          ) &&
+          this.resultado.charAt(this.resultado.length - 1) === '0' &&
+          !this.simbolos.find((s) => s === op)
+        ) {
+          this.resultado =
+            this.resultado.substring(0, this.resultado.length - 1) + op;
+        } else if (
+          this.resultado === '0' &&
+          !this.simbolos.find((s) => s === op)
+        ) {
+          this.resultado = op;
+        } else {
+          this.resultado += op;
+        }
         break;
     }
   }
@@ -35,7 +54,7 @@ export class AppComponent {
     if (!this.resultado) {
       this.resultado = '';
     } else {
-      this.resultado = eval(this.resultado);
+      this.resultado = eval(this.resultado) + '';
     }
   }
 }
